@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Teo Yi Rou | DAS Portfolio – Biomedical Science</title>
+<style>
+  :root{
+    --navy:#1a2e4a;--teal:#1d7a8a;--green:#2e7d52;--gold:#c9a84c;
+    --light:#f4f7fa;--white:#fff;--text:#2d3748;--muted:#6b7280;--border:#e2e8f0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--light);}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;background:var(--navy);z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+  .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .nav-logo{color:var(--gold);font-weight:700;font-size:1rem;letter-spacing:.5px;}
+  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;}
+  .nav-links a{color:#cbd5e0;text-decoration:none;font-size:.82rem;letter-spacing:.3px;transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a2a 60%,#1d5c70 100%);color:white;padding:130px 24px 80px;text-align:center;}
+  .hero-badge{display:inline-block;background:rgba(201,168,76,.15);border:1px solid var(--gold);color:var(--gold);font-size:.78rem;letter-spacing:1px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:20px;}
+  .hero-photo{width:130px;height:130px;border-radius:50%;border:4px solid var(--gold);margin:0 auto 24px;overflow:hidden;background:#2d4a3e;display:flex;align-items:center;justify-content:center;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo-placeholder{color:#a0aec0;font-size:.75rem;text-align:center;padding:10px;}
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;letter-spacing:-1px;margin-bottom:8px;}
+  .hero h2{font-size:clamp(.95rem,2vw,1.2rem);color:#90cdf4;font-weight:400;margin-bottom:20px;}
+  .hero-school{color:#a0aec0;font-size:.9rem;margin-bottom:32px;}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:36px;}
+  .tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#e2e8f0;padding:6px 14px;border-radius:20px;font-size:.8rem;}
+  .btn{display:inline-block;background:var(--gold);color:var(--navy);padding:12px 28px;border-radius:6px;font-weight:700;text-decoration:none;font-size:.9rem;transition:background .2s,transform .2s;}
+  .btn:hover{background:#e0b84c;transform:translateY(-2px);}
+
+  /* SECTIONS */
+  .sec{max-width:1000px;margin:auto;padding:72px 24px;}
+  .sec-white{background:white;}
+  .sec-inner{max-width:1000px;margin:auto;padding:72px 24px;}
+  .sec-label{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:8px;}
+  .sec-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--navy);margin-bottom:8px;}
+  .divider{width:48px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:32px;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .about-card{background:var(--light);border-left:4px solid var(--teal);padding:24px;border-radius:8px;}
+  .about-card h3{font-size:1rem;color:var(--navy);font-weight:700;margin-bottom:12px;}
+  .about-card p{font-size:.9rem;line-height:1.8;color:var(--text);}
+  @media(max-width:640px){.about-grid{grid-template-columns:1fr;}}
+
+  /* QUOTE */
+  .quote-block{background:var(--navy);color:white;padding:40px;border-radius:12px;margin-top:32px;position:relative;}
+  .quote-block::before{content:'"';font-size:5rem;color:var(--gold);opacity:.3;position:absolute;top:-10px;left:20px;line-height:1;}
+  .quote-block p{font-size:1.05rem;line-height:1.85;font-style:italic;padding-left:16px;}
+  .quote-block cite{display:block;margin-top:16px;font-size:.82rem;color:var(--gold);font-style:normal;padding-left:16px;}
+
+  /* HIGHLIGHT BOX */
+  .highlight-box{background:linear-gradient(135deg,#eaf6f8,#f0faf4);border:1px solid #b2dfdb;border-radius:12px;padding:28px;margin-bottom:24px;}
+  .highlight-box h3{color:var(--teal);font-size:1rem;margin-bottom:10px;font-weight:700;}
+  .highlight-box p{font-size:.9rem;line-height:1.8;color:var(--text);}
+
+  /* PROJECT */
+  .project-card{background:white;border:1px solid var(--border);border-radius:12px;padding:32px;margin-bottom:28px;}
+  .project-card h3{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .project-sub{font-size:.85rem;color:var(--teal);font-weight:600;margin-bottom:16px;}
+  .project-card p{font-size:.9rem;line-height:1.8;color:var(--text);margin-bottom:14px;}
+  .contrib-list{list-style:none;padding:0;margin-bottom:16px;}
+  .contrib-list li{font-size:.88rem;color:var(--text);padding:6px 0 6px 20px;border-bottom:1px solid var(--border);position:relative;line-height:1.6;}
+  .contrib-list li::before{content:'▸';position:absolute;left:0;color:var(--teal);}
+  .skills-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:16px;}
+  .skill-box{background:var(--light);border-left:3px solid var(--green);border-radius:6px;padding:14px;}
+  .skill-box h4{font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .skill-box p{font-size:.8rem;color:var(--muted);line-height:1.6;}
+
+  /* PHOTO PLACEHOLDER */
+  .photo-placeholder{background:#e8f0ee;border:2px dashed #9dbfb8;border-radius:10px;padding:40px 20px;text-align:center;margin:20px 0;}
+  .photo-placeholder .ph-icon{font-size:2.5rem;margin-bottom:10px;}
+  .photo-placeholder p{font-size:.82rem;color:#5a8a80;font-weight:600;}
+  .photo-placeholder small{display:block;font-size:.75rem;color:var(--muted);margin-top:4px;}
+  .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px 0;}
+  .photo-item img{width:100%;height:180px;object-fit:cover;border-radius:8px;border:1px solid var(--border);}
+  .photo-caption{font-size:.78rem;color:var(--muted);text-align:center;margin-top:6px;}
+
+  /* LEADERSHIP */
+  .role-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+  .role-card{background:white;border:1px solid var(--border);border-radius:10px;padding:24px;transition:box-shadow .2s,transform .2s;}
+  .role-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-3px);}
+  .role-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--teal),var(--navy));border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.2rem;}
+  .role-card h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+  .role-card p{font-size:.85rem;color:var(--muted);line-height:1.7;}
+  .chip{display:inline-block;background:#e8f5f7;color:var(--teal);font-size:.73rem;font-weight:600;padding:3px 10px;border-radius:20px;margin:3px 2px;}
+
+  /* TIMELINE */
+  .tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  .timeline{position:relative;padding-left:28px;}
+  .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border);}
+  .tl-item{position:relative;margin-bottom:18px;}
+  .tl-item::before{content:'';position:absolute;left:-24px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--teal);border:2px solid white;box-shadow:0 0 0 2px var(--teal);}
+  .tl-year{font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.5px;margin-bottom:2px;}
+  .tl-title{font-size:.86rem;color:var(--text);font-weight:600;}
+  @media(max-width:600px){.tl-grid{grid-template-columns:1fr;}}
+
+  /* MICRO */
+  .micro-section{margin-bottom:40px;}
+  .micro-card{background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:24px;}
+  .micro-card-body{padding:24px;}
+  .micro-card h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;}
+  .micro-card p{font-size:.88rem;line-height:1.8;color:var(--text);}
+  .micro-card img{width:100%;height:220px;object-fit:cover;}
+
+  /* VIA */
+  .via-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+  .via-card{background:white;border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center;}
+  .via-year{font-size:.75rem;color:var(--gold);font-weight:700;margin-bottom:6px;}
+  .via-card p{font-size:.85rem;color:var(--text);font-weight:600;}
+
+  /* GOALS */
+  .goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .goal-card{background:white;border:1px solid var(--border);border-radius:10px;padding:28px;}
+  .goal-card .g-icon{font-size:1.8rem;margin-bottom:12px;}
+  .goal-card h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:10px;}
+  .goal-card p{font-size:.88rem;line-height:1.75;color:var(--text);}
+  @media(max-width:600px){.goals-grid{grid-template-columns:1fr;}}
+
+  /* AWARD BADGE */
+  .award-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#fff8e7,#fef3c7);border:1px solid var(--gold);border-radius:8px;padding:10px 18px;font-size:.88rem;font-weight:700;color:#92670a;}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:#a0aec0;text-align:center;padding:40px 24px;}
+  footer strong{color:var(--gold);}
+  footer p{font-size:.85rem;margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">TEO YI ROU &nbsp;·&nbsp; DAS Portfolio</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#project">Research</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#micro">Micro-Learning</a></li>
+      <li><a href="#via">VIA</a></li>
+      <li><a href="#goals">Goals</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Direct Admission Scheme · Biomedical Science</div>
+
+  <!-- PROFILE PHOTO: Replace images/profile.jpg with your actual photo -->
+  <div class="hero-photo">
+    <img src="images/profile.jpg" alt="Teo Yi Rou"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <div class="hero-photo-placeholder" style="display:none;">📷<br/>Add profile.jpg to images/</div>
+  </div>
+
+  <h1>Teo Yi Rou</h1>
+  <h2>Aspiring Biomedical Science Professional</h2>
+  <p class="hero-school">Mayflower Secondary School &nbsp;·&nbsp; Ngee Ann Polytechnic Applicant</p>
+  <div class="hero-tags">
+    <span class="tag">🎭 CCA President – Chinese Dance</span>
+    <span class="tag">🏆 SYF 2025 Distinction</span>
+    <span class="tag">🎓 Student Councillor</span>
+    <span class="tag">🔬 Scientific Researcher</span>
+    <span class="tag">🌟 Arts Ambassador</span>
+  </div>
+  <a href="#about" class="btn">View My Portfolio</a>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <p class="sec-label">Who I Am</p>
+  <h2 class="sec-title">About Me</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>My Passion for Biomedical Science</h3>
+      <p>I am drawn to Biomedical Science because I want to understand how science works at a human level — not just as concepts in textbooks, but as knowledge that can improve health outcomes. I am especially fascinated by how small everyday decisions, such as UV protection through sunscreen use, can influence long-term health and disease prevention.</p>
+    </div>
+    <div class="about-card">
+      <h3>My Character & Strengths</h3>
+      <p>I am naturally observant and curious, often questioning how and why things happen in the human body. I enjoy identifying patterns, analysing information, and understanding the reasons behind biological processes. Seven years of Chinese Dance and student leadership have shaped me into a disciplined, detail-oriented individual with strong perseverance and teamwork skills.</p>
+    </div>
+  </div>
+  <div class="quote-block">
+    <p>Biomedical Science is not just a course I am interested in — it represents the connection between my curiosity for science and my desire to contribute to human health. I am committed to developing the discipline, curiosity, and skills needed to grow in this field.</p>
+    <cite>— Teo Yi Rou</cite>
+  </div>
+</section>
+
+<!-- WHY NP -->
+<div class="sec-white">
+  <div class="sec-inner">
+    <p class="sec-label">Why Ngee Ann Polytechnic</p>
+    <h2 class="sec-title">Why NP Biomedical Science</h2>
+    <div class="divider"></div>
+    <div class="highlight-box">
+      <h3>Science Knowledge + Practical Application</h3>
+      <p>I am particularly interested in NP's Biomedical Science course because it provides a strong balance between scientific knowledge and real-world application. What attracts me most is the opportunity to learn how biomedical knowledge contributes to disease detection, diagnostic testing, and medical research — understanding not only how diseases affect the body, but how scientists use evidence and technology to support better patient care.</p>
+    </div>
+    <div class="highlight-box" style="margin-bottom:0;">
+      <h3>Hands-On Learning & Collaborative Environment</h3>
+      <p>NP's emphasis on hands-on learning and industry exposure aligns with my learning style — I learn best through active investigation and applying concepts in real-world contexts. I also value NP's collaborative environment, as biomedical science requires teamwork between scientists, healthcare professionals, and researchers. I believe NP will provide the foundation for me to grow into a responsible and capable biomedical professional.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT -->
+<section class="sec" id="project">
+  <p class="sec-label">Course-Related Work</p>
+  <h2 class="sec-title">Scientific Investigation</h2>
+  <div class="divider"></div>
+
+  <div class="project-card">
+    <h3>Defending Your Dermis</h3>
+    <p class="project-sub">A Comparative Study of Organic and Synthetic Sunscreens</p>
+
+    <!-- PROJECT PHOTO -->
+    <div class="photo-placeholder">
+      <div class="ph-icon">🔬</div>
+      <p>[Photo: Sunscreen Research Project / Research Poster]</p>
+      <small>Upload as: images/sunscreen-project.jpg</small>
+    </div>
+
+    <p>Our project investigated the effectiveness of commercial and homemade sunscreens in protecting against UV radiation — a major risk factor for skin damage and skin cancer. Over several months, my team compared different sunscreen formulations under Singapore's high UV conditions and analysed their UV Protection Rating (UV PR) using UV indicator cards.</p>
+    <p>This project allowed me to experience the complete scientific research process — from designing experiments and collecting data to analysing results and presenting evidence-based conclusions to teachers and judges.</p>
+
+    <h4 style="color:var(--navy);font-size:.9rem;font-weight:700;margin-bottom:10px;">My Contributions</h4>
+    <ul class="contrib-list">
+      <li>Planned and discussed experimental design with my team</li>
+      <li>Applied sunscreen samples consistently to ensure fair testing</li>
+      <li>Recorded UV Protection Rating (UV PR) results during each trial</li>
+      <li>Collected and organised experimental data over multiple weeks</li>
+      <li>Compared commercial and homemade sunscreen formulations</li>
+      <li>Analysed patterns in the results and contributed to findings</li>
+      <li>Assisted in preparing and designing the final research poster</li>
+      <li>Presented findings clearly to teachers and judges</li>
+    </ul>
+
+    <h4 style="color:var(--navy);font-size:.9rem;font-weight:700;margin:16px 0 12px;">Scientific Skills Developed</h4>
+    <div class="skills-row">
+      <div class="skill-box">
+        <h4>🧪 Experimental Design</h4>
+        <p>Controlled variables precisely — equal sunscreen amounts, water volume, identical UV cards and consistent testing durations — ensuring only the formulation changed.</p>
+      </div>
+      <div class="skill-box">
+        <h4>📊 Data Collection & Analysis</h4>
+        <p>Conducted multiple experiments across different weeks and calculated averages — learning that scientific conclusions require repeated observations, not assumptions.</p>
+      </div>
+      <div class="skill-box">
+        <h4>🧠 Critical Thinking</h4>
+        <p>When homemade sunscreen underperformed, analysed possible reasons including uneven application and formulation differences rather than simply concluding it "failed."</p>
+      </div>
+      <div class="skill-box">
+        <h4>🤝 Teamwork</h4>
+        <p>Divided responsibilities, discussed improvements after each experiment, and supported one another throughout the investigation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<div class="sec-white">
+  <div class="sec-inner" id="leadership">
+    <p class="sec-label">Extracurricular Excellence</p>
+    <h2 class="sec-title">Leadership & Roles</h2>
+    <div class="divider"></div>
+
+    <!-- PERFORMANCE PHOTO GALLERY -->
+    <div class="photo-grid">
+      <div>
+        <div class="photo-placeholder" style="margin:0;">
+          <div class="ph-icon">🎭</div>
+          <p>[Photo: SYF 2025 Performance]</p>
+          <small>images/syf2025.jpg</small>
+        </div>
+      </div>
+      <div>
+        <div class="photo-placeholder" style="margin:0;">
+          <div class="ph-icon">🎭</div>
+          <p>[Photo: Esplanade Performance]</p>
+          <small>images/esplanade.jpg</small>
+        </div>
+      </div>
+      <div>
+        <div class="photo-placeholder" style="margin:0;">
+          <div class="ph-icon">🎭</div>
+          <p>[Photo: Aesthetic Production]</p>
+          <small>images/aesthetic-production.jpg</small>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:28px 0;">
+      <div class="award-badge"><span>🏆</span> Singapore Youth Festival (SYF) 2025 – DISTINCTION</div>
+    </div>
+
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-icon">🎭</div>
+        <h3>President – Chinese Dance CCA</h3>
+        <p>Led CCA members through major performances including SYF 2025 (Distinction) and Chinese Dance Fiesta @ Esplanade. Coordinated practices, guided juniors, and managed the Executive Committee to ensure well-prepared performances.</p>
+        <div style="margin-top:12px;">
+          <span class="chip">SYF Distinction 2025</span>
+          <span class="chip">Esplanade 2024 & 2025</span>
+          <span class="chip">7 Years Dance</span>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🎓</div>
+        <h3>Student Councillor</h3>
+        <p>Represented peers, supported school initiatives, and co-organised events including the 24-Hour Challenge and leadership camps. Developed integrity, accountability, and multi-perspective decision-making.</p>
+        <div style="margin-top:12px;">
+          <span class="chip">24H Challenge 2025</span>
+          <span class="chip">Future Ready Challenge</span>
+          <span class="chip">Leadership Camp</span>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🎨</div>
+        <h3>Arts Ambassador</h3>
+        <p>Served as Casting Evaluator for school arts events. Required careful observation, objective assessment, and responsible decision-making — strengthening critical thinking and attention to detail.</p>
+        <div style="margin-top:12px;">
+          <span class="chip">Tea Time Concert</span>
+          <span class="chip">HK Student Exchange</span>
+          <span class="chip">Casting Evaluator</span>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">💻</div>
+        <h3>Cyber Wellness Ambassador</h3>
+        <p>Developed student awareness presentations on responsible online behaviour. Built skills in information accuracy, responsible communication, and understanding how messages influence behaviour.</p>
+        <div style="margin-top:12px;">
+          <span class="chip">Presentation Dev Team</span>
+          <span class="chip">Digital Literacy</span>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">📢</div>
+        <h3>English Representative</h3>
+        <p>Coordinated class tasks and ensured clear communication across peers. Strengthened dependability, structured thinking, and ability to work effectively with different individuals.</p>
+        <div style="margin-top:12px;">
+          <span class="chip">2023 – 2024</span>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🏃</div>
+        <h3>Class Committee Member</h3>
+        <p>Supported Inter-Class Games, Cross Country, and Dance Competitions across four years. Managed logistics, relayed instructions, and ensured smooth event coordination over multiple years.</p>
+        <div style="margin-top:12px;">
+          <span class="chip">2023 – 2026</span>
+          <span class="chip">MOE Minister Dialogue</span>
+          <span class="chip">Creative Bins Project</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACHIEVEMENTS TIMELINE -->
+    <h3 style="color:var(--navy);font-size:1rem;font-weight:700;margin:40px 0 20px;">Full Performances & Events Record</h3>
+    <div class="tl-grid">
+      <div>
+        <p style="font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:12px;">2026 & 2025</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">2026</div><div class="tl-title">Aesthetic Production: Signal Reconnect</div></div>
+          <div class="tl-item"><div class="tl-year">2026</div><div class="tl-title">Youth Leadership Dance Camp: Amplified</div></div>
+          <div class="tl-item"><div class="tl-year">2026</div><div class="tl-title">Student Leader Investiture</div></div>
+          <div class="tl-item"><div class="tl-year">2026</div><div class="tl-title">Chinese New Year Celebration</div></div>
+          <div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">🏆 Singapore Youth Festival – Distinction</div></div>
+          <div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">Chinese Dance Fiesta @ Esplanade (SCDT)</div></div>
+          <div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">Aesthetic Production: The Museum</div></div>
+          <div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">Inter-school Future Ready Challenge</div></div>
+          <div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">24-Hour Challenge (Anderson Sec)</div></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:12px;">2024 & 2023</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">Chinese Dance Fiesta @ Esplanade (SCDT)</div></div>
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">Mayflower Dance Recital: The Dance Tapestry</div></div>
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">AMK Sec Production: NOMAD</div></div>
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">Kebun Baru CC CNY Dinner & National Day</div></div>
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">HK Student Exchange Programme</div></div>
+          <div class="tl-item"><div class="tl-year">2023</div><div class="tl-title">Mayflower Tea Time Concert</div></div>
+          <div class="tl-item"><div class="tl-year">2023</div><div class="tl-title">Kebun Baru CC National Day Observance</div></div>
+          <div class="tl-item"><div class="tl-year">2023</div><div class="tl-title">SEP Archery</div></div>
+          <div class="tl-item"><div class="tl-year">2023</div><div class="tl-title">Sec 1 Cohort Camp</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MICRO LEARNING -->
+<section class="sec" id="micro">
+  <p class="sec-label">Beyond the Classroom</p>
+  <h2 class="sec-title">Micro-Learning & Programmes</h2>
+  <div class="divider"></div>
+
+  <h3 style="color:var(--navy);font-size:1rem;font-weight:700;margin-bottom:20px;">🔬 Biomedical Science Related</h3>
+
+  <!-- Squid Dissection -->
+  <div class="micro-card">
+    <div class="photo-placeholder" style="border-radius:0;margin:0;">
+      <div class="ph-icon">🦑</div>
+      <p>[Photo: Squid Dissection Programme]</p>
+      <small>Upload as: images/squid-dissection.jpg</small>
+    </div>
+    <div class="micro-card-body">
+      <h3>🦑 Squid Dissection Programme</h3>
+      <p>Through the Squid Dissection Programme, I gained the opportunity to explore biological structures through a hands-on dissection experience. This allowed me to observe and understand the relationship between different structures within an organism, beyond what can be learnt from textbooks alone. The experience strengthened my appreciation for the complexity of living systems and sparked my curiosity about how scientific research helps us better understand life.</p>
+    </div>
+  </div>
+
+  <!-- Science in Action -->
+  <div class="micro-card">
+    <div class="photo-placeholder" style="border-radius:0;margin:0;">
+      <div class="ph-icon">🔭</div>
+      <p>[Photo: Science in Action / SIL Programme]</p>
+      <small>Upload as: images/science-in-action.jpg</small>
+    </div>
+    <div class="micro-card-body">
+      <h3>🔭 Science in Action Programme</h3>
+      <p>Participating in the Science in Action programme allowed me to experience how scientific knowledge can be applied to real-world situations. It encouraged me to think critically, ask questions, and understand how science plays a role in addressing challenges in healthcare and society. This experience further developed my interest in pursuing a field where scientific knowledge can create meaningful impacts.</p>
+    </div>
+  </div>
+
+  <!-- NJC Microbiology -->
+  <div class="micro-card">
+    <div class="photo-placeholder" style="border-radius:0;margin:0;">
+      <div class="ph-icon">🧫</div>
+      <p>[Photo: NJC Microbiology Workshop]</p>
+      <small>Upload as: images/njc-microbiology.jpg</small>
+    </div>
+    <div class="micro-card-body">
+      <h3>🧫 Microbiology Workshop – National Junior College (NJC)</h3>
+      <p>During the microbiology workshop at National Junior College, I was introduced to the study of microorganisms and their growth. Through learning about bacterial growth and microbiological concepts, I gained a deeper understanding of how microorganisms interact with their environments and the importance of scientific investigation. This experience developed my interest in how microbiology plays a role in healthcare, disease understanding, and developing solutions to improve human health.</p>
+    </div>
+  </div>
+
+  <!-- Self Learning -->
+  <div class="micro-card">
+    <div class="photo-placeholder" style="border-radius:0;margin:0;">
+      <div class="ph-icon">📚</div>
+      <p>[Photo: Independent Study / Self-Learning]</p>
+      <small>Upload as: images/self-learning.jpg</small>
+    </div>
+    <div class="micro-card-body">
+      <h3>📚 Independent Exploration of Human Biology</h3>
+      <p>Driven by curiosity about the human body, I independently explored biomedical topics by watching educational videos and researching how different body systems function. Through self-directed learning, I gained a deeper appreciation of biological processes and how biomedical science contributes to disease prevention, diagnosis, and treatment.</p>
+    </div>
+  </div>
+
+  <h3 style="color:var(--navy);font-size:1rem;font-weight:700;margin:36px 0 20px;">💡 Innovation & Communication Skills</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+    <div style="background:white;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:20px;">
+      <h4 style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:8px;">🧠 Acorn Training ApLM</h4>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;">Identified societal challenges and created impactful solutions. Strengthened critical thinking, creative problem-solving, and the belief that innovation improves lives.</p>
+    </div>
+    <div style="background:white;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:20px;">
+      <h4 style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:8px;">📡 Mass Media – Radio Presenter</h4>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;">Developed confidence in communicating clearly and engaging different audiences. Improved articulation, active listening, and clear information presentation.</p>
+    </div>
+    <div style="background:white;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:20px;">
+      <h4 style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:8px;">📰 ALP Journalism & Broadcasting</h4>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;">Learnt to research, organise, and deliver messages responsibly — strengthening attention to accuracy and effective communication.</p>
+    </div>
+    <div style="background:white;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:20px;">
+      <h4 style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:8px;">🎭 English ALP – Speech & Drama</h4>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;">Built confidence in public speaking, expression, and collaboration. Learnt to convey ideas clearly to different audiences — essential in biomedical teamwork and research communication.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VIA -->
+<div class="sec-white">
+  <div class="sec-inner" id="via">
+    <p class="sec-label">Community Service</p>
+    <h2 class="sec-title">Values In Action (VIA)</h2>
+    <div class="divider"></div>
+    <div class="via-list">
+      <div class="via-card"><div class="via-year">2026</div><p>Total Defence: Leaving a Legacy</p></div>
+      <div class="via-card"><div class="via-year">2025</div><p>Walking in Y(our) Shoes</p></div>
+      <div class="via-card"><div class="via-year">2024</div><p>Intergenerational Bonding</p></div>
+      <div class="via-card"><div class="via-year">2023</div><p>School @ Heart</p></div>
+    </div>
+    <p style="margin-top:20px;font-size:.9rem;color:var(--muted);line-height:1.8;">Through VIA programmes, I developed empathy and awareness of challenges faced by different groups in society. Activities such as intergenerational bonding and perspective-taking shaped me into a more considerate, reflective, and socially aware individual — qualities essential in healthcare, where understanding patients and diverse communities is critical.</p>
+  </div>
+</div>
+
+<!-- GOALS -->
+<section class="sec" id="goals">
+  <p class="sec-label">Looking Ahead</p>
+  <h2 class="sec-title">Future Goals</h2>
+  <div class="divider"></div>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="g-icon">🎯</div>
+      <h3>Short-Term Goals</h3>
+      <p>Strengthen my understanding of human biology, disease mechanisms, and biomedical laboratory techniques. Develop the ability to interpret scientific data and apply knowledge to solve healthcare-related problems through NP's practical, hands-on curriculum.</p>
+    </div>
+    <div class="goal-card">
+      <div class="g-icon">🚀</div>
+      <h3>Long-Term Aspirations</h3>
+      <p>Contribute to healthcare through diagnostics, medical research, or biomedical innovation. I hope to play a role in improving early disease detection and developing solutions that positively impact patients' lives.</p>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:32px;">
+    <p>I believe that my discipline, curiosity, and commitment to continuous improvement will allow me to contribute positively to the Biomedical Science course at Ngee Ann Polytechnic and to the healthcare community beyond.</p>
+    <cite>— Teo Yi Rou, Mayflower Secondary School</cite>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Teo Yi Rou</strong> &nbsp;·&nbsp; Direct Admission Scheme Application</p>
+  <p>Mayflower Secondary School &nbsp;·&nbsp; Applying to Ngee Ann Polytechnic – Biomedical Science</p>
+  <p style="margin-top:12px;font-size:.78rem;color:#718096;">Portfolio prepared for the NP DAS Interview Process · 2026</p>
+</footer>
+
+</body>
+</html>
